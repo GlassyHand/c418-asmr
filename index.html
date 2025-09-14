@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+<title></title>
+
+<style>
+
+html{font-family: "Bitcount Grid Double", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 18px;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;}
+
+body, h1, h2, h3, p {margin: 0;padding: 0;}
+
+
+
+
+.wrap {position: fixed;
+width: 100vw;
+height: 100vw}
+
+.stickers {position: absolute;}
+
+.stickers-text {margin-top: 5px;
+ color: gray;
+ text-align: center;}
+
+
+
+
+
+.window-img {position: fixed;
+top: 20%;
+left: 44%;
+width: 24vw;   
+height: 24vw;
+z-index: 1;
+pointer-events: none;}
+
+.landscape {position: fixed;
+top: 20%;
+left: 44%;
+width: 24vw;   
+height: 24vw;
+z-index: 0;
+object-fit: cover;
+pointer-events: none;}
+
+
+
+
+
+.tape-wrap {position: fixed; width: 15vw; margin-left: 80%; padding-top: 4%}
+.tape {display: flex;
+  flex-direction: column;
+  gap: 10px;}
+
+.tape img {width: 15vw; height: auto;}
+
+.tape-text {margin: 0 0 20px 0;
+  color: gray;
+  text-align: center}
+
+
+#forestBut, #beachBut, #chimeBut, #fireplaceBut, #peopleBut {filter: grayscale(100%);}
+#swedenImage, #dryImage, #haggImage, #livingImage, #subImage, #wetImage {opacity: 0}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<audio id="forestSnd" src="forest.mp3" loop onloadstart="this.volume=0.5"></audio>
+<audio id="beachSnd" src="beach.mp3" loop onloadstart="this.volume=0.5"></audio>
+<audio id="chimeSnd" src="chimes.mp3" loop onloadstart="this.volume=0.5"></audio>
+<audio id="fireplaceSnd" src="fire.mp3" loop onloadstart="this.volume=0.5"></audio>
+<audio id="peopleSnd" src="people.mp3" loop onloadstart="this.volume=0.5"></audio>
+
+<audio id="swedenSnd" src="sweden.mp3" loop onloadstart="this.volume=2"></audio>
+<audio id="drySnd" src="dry-hands.mp3" loop onloadstart="this.volume=2"></audio>
+<audio id="haggSnd" src="haggstrom.mp3" loop onloadstart="this.volume=2"></audio>
+<audio id="livingSnd" src="living-mice.mp3" loop onloadstart="this.volume=2"></audio>
+<audio id="subSnd" src="subwoofer-lullaby.mp3" loop onloadstart="this.volume=2"></audio>
+<audio id="wetSnd" src="wet-hands.mp3" loop onloadstart="this.volume=2"></audio>
+
+<img src="window_digital.png" class="window-img">
+
+<img id="swedenImage" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW10bGNvMW8wMXFpbDh2bXdhYnN4Mzc4aTMwN2JybDBneDIyM3AzdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1JsSOW3M1y8xefYZAD/giphy.gif" class="landscape">
+
+<img id="dryImage" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWQxd3J3b3d1eGZrOWI2M3cwMXpwbHlkaHVnYWIzbmlmbmQ2NGJvNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uf3jumi0zzUv6/giphy.gif" class="landscape">
+
+<img id="haggImage" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGFxY2F0dzAxaDF0ZmNubWlrd3lvMDkwbG52dDVocmIxbXVhdnF0MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o3Gap8TcEIfPa/giphy.gif" class="landscape">
+
+<img id="livingImage" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTVwMGhpYXJxdmFvZzExMTZucWgza2h1ajg4M3g2aTE0OGM5MHQzaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPaGG4PDQgQDFZe/giphy.gif" class="landscape">
+
+<img id="subImage" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3pyeXJtbWdlcWNrbm9odTc4aXp4cHB6aXc2M21vemJtYmdjOTU4NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4PjjOgU3Pj236/giphy.gif" class="landscape">
+
+<img id="wetImage" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHR0NWxucDhzamU1YWFnbHZiN3g3c2NwMTE3M2Z4OWo1d3B0d2JrMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dU97uV3UyP0ly/giphy.gif" class="landscape">
+
+
+ <div class="wrap">
+
+      <div class="stickers" style="top:-70px; left:0px;">
+        <img id="forestBut" src="forest.png" style="width: 25vw; height: auto">
+        <div class="stickers-text">FOREST SOUND</div>
+      </div>
+
+      <div class="stickers" style="top:19%; left:0%;">
+        <img id="beachBut" src="beach.png" style="width: 13vw; height: auto">
+        <div class="stickers-text">BEACH SOUND</div>
+      </div>
+
+      <div class="stickers" style="top:25%; left:15%;">
+        <img id="chimeBut" src="chimes.png" style="width: 9vw; height: auto">
+        <div class="stickers-text">CHIMEBELL SOUND</div>
+      </div>
+
+      <div class="stickers" style="top:35%; left:0px;">
+        <img id="fireplaceBut" src="fireplace.png" style="width: 14vw; height: auto">
+        <div class="stickers-text">FIREPLACE SOUND</div>
+      </div>
+
+      <div class="stickers" style="top:34%; left:23%;">
+        <img id="peopleBut" src="cafe.png" style="width: 15vw; height: auto">
+        <div class="stickers-text">PEOPLE SOUND</div>
+      </div>
+ 
+
+<div class="tape-wrap">
+      <div class="tape">
+        <img id="swedenBut" src="tape1.png">
+        <div class="tape-text">C418-Sweden</div>
+      </div>
+
+      <div class="tape">
+        <img id="dryBut" src="tape2.png">
+        <div class="tape-text">C418-Dry Hands</div>
+      </div>
+
+      <div class="tape">
+        <img id="haggBut" src="tape3.png">
+        <div class="tape-text">C418-Haggstorm</div>
+      </div>
+
+      <div class="tape">
+        <img id="livingBut" src="tape4.png">
+        <div class="tape-text">C418-Living Mice</div>
+      </div>
+
+      <div class="tape">
+        <img id="subBut" src="tape5.png">
+        <div class="tape-text">C418-Subwoofer Lullaby</div>
+      </div>
+
+      <div class="tape">
+        <img id="wetBut"src="tape6.png">
+        <div class="tape-text">C418-Wet Hands</div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+<script>
+
+let forestPlayState = false;
+
+forestBut.onclick = function(){
+
+	if(!forestPlayState){
+	forestSnd.play();
+	forestBut.style.filter = "grayscale(0%)";
+	forestPlayState = true;}
+
+	else{forestSnd.pause();
+	forestBut.style.filter = "grayscale(100%)";
+	forestPlayState = false;}
+}
+
+let beachPlayState = false;
+
+beachBut.onclick = function(){
+
+	if(!beachPlayState){
+	beachSnd.play();
+	beachBut.style.filter = "grayscale(0%)";
+	beachPlayState = true;}
+
+	else{beachSnd.pause();
+	beachBut.style.filter = "grayscale(100%)";
+	beachPlayState = false;}
+}
+
+let chimePlayState = false;
+
+chimeBut.onclick = function(){
+
+	if(!chimePlayState){
+	chimeSnd.play();
+	chimeBut.style.filter = "grayscale(0%)";
+	chimePlayState = true;}
+
+	else{chimeSnd.pause();
+	chimeBut.style.filter = "grayscale(100%)";
+	chimePlayState = false;}
+}
+
+let fireplacePlayState = false;
+
+fireplaceBut.onclick = function(){
+
+	if(!fireplacePlayState){
+	fireplaceSnd.play();
+	fireplaceBut.style.filter = "grayscale(0%)";
+	fireplacePlayState = true;}
+
+	else{fireplaceSnd.pause();
+	fireplaceBut.style.filter = "grayscale(100%)";
+	fireplacePlayState = false;}
+}
+
+let peoplePlayState = false;
+
+peopleBut.onclick = function(){
+
+	if(!peoplePlayState){
+	peopleSnd.play();
+	peopleBut.style.filter = "grayscale(0%)";
+	peoplePlayState = true;}
+
+	else{peopleSnd.pause();
+	peopleBut.style.filter = "grayscale(100%)";
+	peoplePlayState = false;}
+}
+
+
+
+
+
+
+let swedenPlayState = false;
+let swedenImage = document.getElementById('swedenImage');
+
+swedenBut.onclick = function(){
+	if(!swedenPlayState){
+	swedenSnd.play();
+	swedenBut.style.filter = "sepia(100%)"
+	swedenImage.style.opacity = 1;
+	swedenPlayState = true;}
+
+	else{swedenSnd.pause();
+	swedenBut.style.filter = "sepia(20%)"
+	swedenImage.style.opacity = 0;
+	swedenPlayState = false;}}
+
+
+
+let dryPlayState = false;
+let dryImage = document.getElementById('dryImage');
+
+dryBut.onclick = function(){
+	if(!dryPlayState){
+	drySnd.play();
+	dryBut.style.filter = "sepia(100%)"
+	dryImage.style.opacity = 1;
+	dryPlayState = true;}
+
+	else{drySnd.pause();
+	dryBut.style.filter = "sepia(20%)"
+	dryImage.style.opacity = 0;
+	dryPlayState = false;}}
+
+
+
+let haggPlayState = false;
+let haggImage = document.getElementById('haggImage');
+
+haggBut.onclick = function(){
+	if(!haggPlayState){
+	haggSnd.play();
+	haggBut.style.filter = "sepia(100%)"
+	haggImage.style.opacity = 1;
+	haggPlayState = true;}
+
+	else{haggSnd.pause();
+	haggBut.style.filter = "sepia(20%)"
+	haggImage.style.opacity = 0;
+	haggPlayState = false;}}
+
+
+
+
+let livingPlayState = false;
+let livingImage = document.getElementById('livingImage');
+
+livingBut.onclick = function(){
+	if(!livingPlayState){
+	livingSnd.play();
+	livingBut.style.filter = "sepia(100%)"
+	livingImage.style.opacity = 1;
+	livingPlayState = true;}
+
+	else{livingSnd.pause();
+	livingBut.style.filter = "sepia(20%)"
+	livingImage.style.opacity = 0;
+	livingPlayState = false;}}
+
+
+
+
+let subPlayState = false;
+let subImage = document.getElementById('subImage');
+
+subBut.onclick = function(){
+	if(!subPlayState){
+	subSnd.play();
+	subBut.style.filter = "sepia(100%)"
+	subImage.style.opacity = 1;
+	subPlayState = true;}
+
+	else{subSnd.pause();
+	subBut.style.filter = "sepia(20%)"
+	subImage.style.opacity = 0;
+	subPlayState = false;}}
+
+
+
+
+let wetPlayState = false;
+let wetImage = document.getElementById('wetImage');
+
+wetBut.onclick = function(){
+	if(!wetPlayState){
+	wetSnd.play();
+	wetBut.style.filter = "sepia(100%)"
+	wetImage.style.opacity = 1;
+	wetPlayState = true;}
+
+	else{wetSnd.pause();
+	wetBut.style.filter = "sepia(20%)"
+	wetImage.style.opacity = 0;
+	wetPlayState = false;}}
+
+
+</script>
+
+
+</body>
+
+</html>
